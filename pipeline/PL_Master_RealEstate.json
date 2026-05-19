@@ -1,0 +1,50 @@
+{
+	"name": "PL_Master_RealEstate",
+	"properties": {
+		"activities": [
+			{
+				"name": "Run_Copy_RawData_To_Staging",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_Copy_RawData_To_Staging",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Run_Load_DWH",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Run_Copy_RawData_To_Staging",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_Load_DWH",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "03_Master"
+		},
+		"annotations": []
+	}
+}
