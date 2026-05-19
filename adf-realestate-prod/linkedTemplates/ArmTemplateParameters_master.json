@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-realestate-prod"
+		},
+		"LS_BlobStorage_connectionString": {
+			"value": ""
+		},
+		"LS_AzureSQLDB_properties_typeProperties_server": {
+			"value": "sql-realestate-server.database.windows.net"
+		},
+		"LS_AzureSQLDB_properties_typeProperties_database": {
+			"value": "db-realestate-dw"
+		},
+		"LS_AzureSQLDB_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"LS_KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-realestate-prod.vault.azure.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
