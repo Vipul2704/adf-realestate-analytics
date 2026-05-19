@@ -1,0 +1,271 @@
+{
+	"name": "PL_Load_DWH",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP_Load_DimAgent",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_DimAgent]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_DimProperty",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_DimProperty]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_DimListing",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_DimListing]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_DimCampaign",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_DimCampaign]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_FactTransaction",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SP_Load_DimAgent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimProperty",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimListing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimCampaign",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_FactTransaction]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_FactOffer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SP_Load_DimAgent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimProperty",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimListing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimCampaign",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_FactOffer]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_FactViewing",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SP_Load_DimAgent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimProperty",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimListing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimCampaign",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_FactViewing]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "SP_Load_FactLead",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SP_Load_DimAgent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimProperty",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimListing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "SP_Load_DimCampaign",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_Load_FactLead]"
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "02_DWH_Load"
+		},
+		"annotations": []
+	}
+}
