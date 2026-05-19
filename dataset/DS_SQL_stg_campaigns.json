@@ -1,0 +1,46 @@
+{
+	"name": "DS_SQL_stg_campaigns",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CampaignID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "StartDate",
+				"type": "varchar"
+			},
+			{
+				"name": "EndDate",
+				"type": "varchar"
+			},
+			{
+				"name": "Channel",
+				"type": "varchar"
+			},
+			{
+				"name": "Cost",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_campaigns"
+		}
+	}
+}

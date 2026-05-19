@@ -1,0 +1,42 @@
+{
+	"name": "DS_SQL_stg_offers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OfferID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferDate",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "OfferStatus",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_offers"
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{
+	"name": "DS_SQL_stg_transactions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "AgentID",
+				"type": "varchar"
+			},
+			{
+				"name": "PropertyID",
+				"type": "varchar"
+			},
+			{
+				"name": "OfferDate",
+				"type": "varchar"
+			},
+			{
+				"name": "ClosingDate",
+				"type": "varchar"
+			},
+			{
+				"name": "SalePrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_transactions"
+		}
+	}
+}

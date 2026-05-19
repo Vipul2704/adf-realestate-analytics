@@ -1,0 +1,54 @@
+{
+	"name": "DS_SQL_stg_listings",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "PropertyID",
+				"type": "varchar"
+			},
+			{
+				"name": "AgentID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListDate",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "AskingPrice",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Currency",
+				"type": "varchar"
+			},
+			{
+				"name": "EndDate",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_listings"
+		}
+	}
+}

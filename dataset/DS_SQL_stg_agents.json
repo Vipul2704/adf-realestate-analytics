@@ -1,0 +1,45 @@
+{
+	"name": "DS_SQL_stg_agents",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "AgentID",
+				"type": "varchar"
+			},
+			{
+				"name": "AgentName",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "JoinDate",
+				"type": "varchar"
+			},
+			{
+				"name": "ExperienceYears",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_agents"
+		}
+	}
+}

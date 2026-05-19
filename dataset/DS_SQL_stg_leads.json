@@ -1,0 +1,42 @@
+{
+	"name": "DS_SQL_stg_leads",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "LeadID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "LeadDate",
+				"type": "varchar"
+			},
+			{
+				"name": "Source",
+				"type": "varchar"
+			},
+			{
+				"name": "LeadScore",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_leads"
+		}
+	}
+}

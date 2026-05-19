@@ -1,0 +1,41 @@
+{
+	"name": "DS_SQL_stg_viewings",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL_Staging"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ViewingID",
+				"type": "varchar"
+			},
+			{
+				"name": "ListingID",
+				"type": "varchar"
+			},
+			{
+				"name": "ViewingDate",
+				"type": "varchar"
+			},
+			{
+				"name": "DurationMinutes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Feedback",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_viewings"
+		}
+	}
+}
