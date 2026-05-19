@@ -489,6 +489,422 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_agents')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "AgentID",
+						"type": "varchar"
+					},
+					{
+						"name": "AgentName",
+						"type": "varchar"
+					},
+					{
+						"name": "Region",
+						"type": "varchar"
+					},
+					{
+						"name": "City",
+						"type": "varchar"
+					},
+					{
+						"name": "JoinDate",
+						"type": "varchar"
+					},
+					{
+						"name": "ExperienceYears",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_agents"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_campaigns')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "CampaignID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "StartDate",
+						"type": "varchar"
+					},
+					{
+						"name": "EndDate",
+						"type": "varchar"
+					},
+					{
+						"name": "Channel",
+						"type": "varchar"
+					},
+					{
+						"name": "Cost",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_campaigns"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_leads')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "LeadID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "LeadDate",
+						"type": "varchar"
+					},
+					{
+						"name": "Source",
+						"type": "varchar"
+					},
+					{
+						"name": "LeadScore",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_leads"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_listings')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "PropertyID",
+						"type": "varchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListDate",
+						"type": "varchar"
+					},
+					{
+						"name": "Status",
+						"type": "varchar"
+					},
+					{
+						"name": "AskingPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Currency",
+						"type": "varchar"
+					},
+					{
+						"name": "EndDate",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_listings"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_offers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "OfferID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferDate",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "OfferStatus",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_offers"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_properties')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PropertyID",
+						"type": "varchar"
+					},
+					{
+						"name": "Region",
+						"type": "varchar"
+					},
+					{
+						"name": "City",
+						"type": "varchar"
+					},
+					{
+						"name": "PropertyType",
+						"type": "varchar"
+					},
+					{
+						"name": "Bedrooms",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Bathrooms",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "AreaSqft",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "YearBuilt",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_properties"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_transactions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TransactionID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "AgentID",
+						"type": "varchar"
+					},
+					{
+						"name": "PropertyID",
+						"type": "varchar"
+					},
+					{
+						"name": "OfferDate",
+						"type": "varchar"
+					},
+					{
+						"name": "ClosingDate",
+						"type": "varchar"
+					},
+					{
+						"name": "SalePrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_transactions"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_stg_viewings')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL_Staging"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ViewingID",
+						"type": "varchar"
+					},
+					{
+						"name": "ListingID",
+						"type": "varchar"
+					},
+					{
+						"name": "ViewingDate",
+						"type": "varchar"
+					},
+					{
+						"name": "DurationMinutes",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Feedback",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stg_viewings"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_AzureSQLDB')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
