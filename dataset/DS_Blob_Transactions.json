@@ -1,0 +1,55 @@
+{
+	"name": "DS_Blob_Transactions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Blob_Source"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Transactions.csv",
+				"container": "raw-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "String"
+			},
+			{
+				"name": "ListingID",
+				"type": "String"
+			},
+			{
+				"name": "AgentID",
+				"type": "String"
+			},
+			{
+				"name": "PropertyID",
+				"type": "String"
+			},
+			{
+				"name": "OfferDate",
+				"type": "String"
+			},
+			{
+				"name": "ClosingDate",
+				"type": "String"
+			},
+			{
+				"name": "SalePrice",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,47 @@
+{
+	"name": "DS_Blob_Viewings",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Blob_Source"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Viewings.csv",
+				"container": "raw-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ViewingID",
+				"type": "String"
+			},
+			{
+				"name": "ListingID",
+				"type": "String"
+			},
+			{
+				"name": "ViewingDate",
+				"type": "String"
+			},
+			{
+				"name": "DurationMinutes",
+				"type": "String"
+			},
+			{
+				"name": "Feedback",
+				"type": "String"
+			}
+		]
+	}
+}
