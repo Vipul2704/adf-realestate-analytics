@@ -1320,6 +1320,67 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/PL_Master_RealEstate')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Run_Copy_RawData_To_Staging",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "PL_Copy_RawData_To_Staging",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Run_Load_DWH",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Run_Copy_RawData_To_Staging",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "PL_Load_DWH",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "03_Master"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Copy_RawData_To_Staging')]",
+				"[concat(variables('factoryId'), '/pipelines/PL_Load_DWH')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_Blob_Agents')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
