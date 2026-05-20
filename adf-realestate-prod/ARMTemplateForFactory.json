@@ -1011,6 +1011,107 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Log_Copy_Pipeline",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Copy_Agents",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Properties",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Listings",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Campaigns",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Leads",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Viewings",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Offers",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy_Transactions",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:30:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_InsertPipelineLog]",
+							"storedProcedureParameters": {
+								"PipelineName": {
+									"value": "PL_Copy_RawData_To_Staging",
+									"type": "String"
+								},
+								"RunStatus": {
+									"value": "Success",
+									"type": "String"
+								},
+								"RowsCopied": {
+									"value": "145532",
+									"type": "Int32"
+								},
+								"StartTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"EndTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"ErrorMessage": {
+									"value": "None",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_AzureSQLDB",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -1037,7 +1138,8 @@
 				"[concat(variables('factoryId'), '/datasets/DS_Blob_Offers')]",
 				"[concat(variables('factoryId'), '/datasets/DS_SQL_stg_offers')]",
 				"[concat(variables('factoryId'), '/datasets/DS_Blob_Transactions')]",
-				"[concat(variables('factoryId'), '/datasets/DS_SQL_stg_transactions')]"
+				"[concat(variables('factoryId'), '/datasets/DS_SQL_stg_transactions')]",
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSQLDB')]"
 			]
 		},
 		{
@@ -1300,6 +1402,83 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[dbo].[sp_Load_FactLead]"
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_AzureSQLDB",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Log_DWH_Pipeline",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "SP_Load_FactTransaction",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactOffer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactViewing",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactLead",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:30:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_InsertPipelineLog]",
+							"storedProcedureParameters": {
+								"PipelineName": {
+									"value": "PL_Load_DWH",
+									"type": "String"
+								},
+								"RunStatus": {
+									"value": "Success",
+									"type": "String"
+								},
+								"RowsCopied": {
+									"value": "148933",
+									"type": "Int32"
+								},
+								"StartTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"EndTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"ErrorMessage": {
+									"value": "None",
+									"type": "String"
+								}
+							}
 						},
 						"linkedServiceName": {
 							"referenceName": "LS_AzureSQLDB",

@@ -807,6 +807,83 @@
 							"referenceName": "LS_AzureSQLDB",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Log_DWH_Pipeline",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "SP_Load_FactTransaction",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactOffer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactViewing",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "SP_Load_FactLead",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:30:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_InsertPipelineLog]",
+							"storedProcedureParameters": {
+								"PipelineName": {
+									"value": "PL_Load_DWH",
+									"type": "String"
+								},
+								"RunStatus": {
+									"value": "Success",
+									"type": "String"
+								},
+								"RowsCopied": {
+									"value": "148933",
+									"type": "Int32"
+								},
+								"StartTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"EndTime": {
+									"value": {
+										"value": "@{utcNow()}",
+										"type": "Expression"
+									},
+									"type": "Datetime"
+								},
+								"ErrorMessage": {
+									"value": "None",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "LS_AzureSQLDB",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
