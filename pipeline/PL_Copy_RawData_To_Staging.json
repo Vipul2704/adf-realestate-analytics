@@ -959,6 +959,101 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Log_Copy_Pipeline",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy_Agents",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Properties",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Listings",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Campaigns",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Leads",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Viewings",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Offers",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Copy_Transactions",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_InsertPipelineLog]",
+					"storedProcedureParameters": {
+						"PipelineName": {
+							"value": "PL_Copy_RawData_To_Staging",
+							"type": "String"
+						},
+						"RunStatus": {
+							"value": "Success",
+							"type": "String"
+						},
+						"RowsCopied": {
+							"value": "145532",
+							"type": "Int32"
+						},
+						"StartTime": {
+							"value": "@{utcNow()}",
+							"type": "Datetime"
+						},
+						"EndTime": {
+							"value": "@{utcNow()}",
+							"type": "Datetime"
+						},
+						"ErrorMessage": {
+							"value": "None",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSQLDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"folder": {
